@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>tiny-md 演示</title>
+<link rel="stylesheet" href="tiny-md.css">
+<style>
+  body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+       max-width:720px;margin:0 auto;padding:24px 18px;background:#fff;color:#222}
+  h1{font-size:20px}
+  .box{border:1px solid #e5e5e5;border-radius:8px;padding:14px 16px;margin:12px 0}
+  textarea{width:100%;height:150px;font-family:ui-monospace,Menlo,Consolas,monospace;
+           font-size:13px;border:1px solid #ddd;border-radius:6px;padding:10px;box-sizing:border-box}
+  .tm-body{border:1px solid #eee;border-radius:6px;padding:12px 14px;background:#fcfcfc;min-height:60px}
+</style>
+</head>
+<body>
+<h1>tiny-md · 零依赖 Markdown + LaTeX 渲染器</h1>
+<p>左边写，右边实时渲染。一个文件，无任何依赖。</p>
+
+<div class="box">
+  <textarea id="in"># 标题
+
+这是**粗体**、*斜体*、`行内代码`。
+
+## 数学
+
+带分隔符：$x^2 + 1$
+
+裸公式（不用打 $）：(5-2)^2 = 9
+
+分数：$$\frac{a}{b} = c$$
+
+希腊字母：\alpha + \beta = \gamma
+
+## 代码
+
+```python
+def f(x):
+    return x ** 2
+```
+
+## 列表与任务
+
+- 普通项
+- 另一项
+
+- [x] 已完成
+- [ ] 未完成
+
+## 表格
+
+| 名称 | 说明 |
+|---|---|
+| tiny-md | 渲染器 |
+
+> 引用一行
+
+---
+
+公式里也能防 XSS：<script>alert(1)</script></textarea>
+</div>
+
+<div class="box">
+  <div id="out" class="tm-body"></div>
+</div>
+
+<script src="tiny-md.js"></script>
+<script>
+  var ta = document.getElementById('in');
+  var out = document.getElementById('out');
+  function go(){ out.innerHTML = TinyMD.render(ta.value); }
+  ta.addEventListener('input', go);
+  go();
+</script>
+</body>
+</html>
