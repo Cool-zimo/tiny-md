@@ -1,0 +1,117 @@
+/* ═══════════════════════════════════════════════════════════
+   tiny-md 样式
+
+   ★ 全部收在 .tm-body 下，绝不泄漏到宿主页面
+     （<h2> <table> 这类裸元素选择器会污染整站，必须作用域化）
+
+   ★ 变量全部带 --tm- 前缀并给了兜底值，
+     不会跟宿主页面的 --brand / --dur 之类的变量撞车
+   ═══════════════════════════════════════════════════════════ */
+
+.tm-body{font-size:14px;line-height:1.65;color:var(--tm-fg,#222)}
+
+/* ── 段落 / 标题 ─────────────────────────────────────────── */
+.tm-body p{margin:0 0 8px}
+.tm-body p:last-child{margin-bottom:0}
+.tm-body h1,.tm-body h2,.tm-body h3,
+.tm-body h4,.tm-body h5,.tm-body h6{
+    margin:14px 0 6px;font-weight:600;line-height:1.35}
+.tm-body h1{font-size:20px}
+.tm-body h2{font-size:17px}
+.tm-body h3{font-size:15.5px}
+.tm-body h4{font-size:14.5px}
+.tm-body h5,.tm-body h6{font-size:14px}
+
+/* ── 列表 ────────────────────────────────────────────────── */
+.tm-body ul,.tm-body ol{margin:6px 0 10px;padding-left:24px}
+.tm-body li{margin:3px 0}
+
+/* ── 引用 / 分隔线 ───────────────────────────────────────── */
+.tm-body blockquote{
+    margin:8px 0;padding:6px 12px;border-left:3px solid var(--tm-line,#d8d8d8);
+    color:#666;background:rgba(0,0,0,.035);border-radius:0 4px 4px 0}
+.tm-body hr{border:0;border-top:1px solid var(--tm-line,#e5e5e5);margin:12px 0}
+
+/* ── 表格 ────────────────────────────────────────────────── */
+.tm-body table{
+    border-collapse:collapse;margin:8px 0;font-size:13.5px;
+    display:block;overflow-x:auto;max-width:100%}
+.tm-body th,.tm-body td{
+    border:1px solid var(--tm-line,#e2e2e2);padding:6px 11px;text-align:left}
+.tm-body th{background:rgba(0,0,0,.045);font-weight:600}
+
+/* ── 行内元素 ────────────────────────────────────────────── */
+.tm-body a{color:#576b95;text-decoration:none;word-break:break-all}
+.tm-body a:hover{text-decoration:underline}
+.tm-body mark{background:#fff3a3;color:inherit;border-radius:2px;padding:0 2px}
+.tm-body code{
+    background:rgba(0,0,0,.06);border-radius:3px;padding:1px 5px;
+    font-size:13px;font-family:ui-monospace,Menlo,Consolas,monospace}
+.tm-body sup,.tm-body sub{font-size:.72em;line-height:1}
+.tm-body sup{vertical-align:super}
+.tm-body sub{vertical-align:sub}
+
+/* ── 代码块 ──────────────────────────────────────────────── */
+.tm-body pre{
+    background:#f6f6f6;border-radius:6px;padding:10px 12px;
+    overflow-x:auto;margin:8px 0;font-size:12.5px;line-height:1.55;
+    border:1px solid rgba(0,0,0,.07);
+    font-family:ui-monospace,Menlo,Consolas,monospace}
+.tm-body pre code{background:none;padding:0;font-size:12.5px}
+.codeblk{
+    margin:8px 0;border-radius:6px;overflow:hidden;
+    border:1px solid rgba(0,0,0,.09);background:#f6f6f6}
+.code-top{
+    display:flex;align-items:center;gap:8px;padding:4px 10px;
+    background:#ececec;border-bottom:1px solid rgba(0,0,0,.07)}
+.code-top .lang{
+    flex:1;font-size:11px;color:#888;
+    font-family:ui-monospace,Menlo,Consolas,monospace;text-transform:lowercase}
+.copy-btn{
+    border:0;background:#fff;border:1px solid rgba(0,0,0,.12);
+    border-radius:4px;font-size:11px;padding:2px 9px;color:#555;cursor:pointer;
+    transition:.15s ease}
+.copy-btn:hover{color:#07c160;border-color:#07c160}
+.copy-btn.done{color:#07c160;border-color:#07c160;background:#f2fbf5}
+.codeblk pre{margin:0;border:0;border-radius:0;background:#f6f6f6}
+
+/* ── 图片 ────────────────────────────────────────────────── */
+.tm-body img.msg-img{
+    display:block;max-width:100%;max-height:340px;border-radius:6px;
+    margin:6px 0;background:#f0f0f0}
+.tm-body img.msg-img.img-err{
+    min-width:120px;min-height:60px;border:1px dashed #ccc;
+    background:#fafafa}
+
+/* ── 任务列表（只读展示） ───────────────────────────────── */
+.tm-body ul.task{list-style:none;padding-left:2px;margin:6px 0 10px}
+.tm-body li.task-item{display:flex;align-items:flex-start;gap:7px;margin:3px 0}
+.tm-body li.task-item input{margin:4px 0 0;flex:0 0 auto;accent-color:#07c160}
+.tm-body li.task-item.done{color:#999;text-decoration:line-through}
+
+/* ═══ LaTeX 数学公式 ═══════════════════════════════════════ */
+.tm-body .math{
+    font-family:"Latin Modern Math",Cambria,"Times New Roman",serif;
+    line-height:1.5;font-style:normal}
+.tm-body .math-inline{display:inline}
+.tm-body .math-block{
+    display:block;margin:10px 0;padding:8px 12px;
+    background:rgba(0,0,0,.03);border-radius:5px;
+    text-align:center;font-size:15.5px;overflow-x:auto}
+
+/* 分数 */
+.mfrac{display:inline-flex;flex-direction:column;
+    vertical-align:middle;text-align:center;margin:0 2px;font-size:.92em}
+.mnum{padding:0 4px;border-bottom:1px solid currentColor;line-height:1.25}
+.mden{padding:0 4px;line-height:1.25}
+
+/* 根号：上横线盖住被开方数 */
+.msqrt{display:inline-flex;align-items:stretch;margin:0 1px}
+.mrad{position:relative;line-height:1}
+.mbody{border-top:1px solid currentColor;padding:0 2px;margin-top:.32em}
+
+/* 上划线 / 帽子 */
+.mover{border-top:1px solid currentColor;padding-top:1px}
+.mhat{position:relative;padding-top:.3em}
+.mhat::before{content:'^';position:absolute;top:-.15em;left:50%;
+    transform:translateX(-50%);font-size:.75em}
