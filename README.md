@@ -38,6 +38,7 @@ document.body.innerHTML = TinyMD.render('# 你好');
 ```js
 TinyMD.render(text)          // → HTML 字符串
 TinyMD.renderTex(latex)      // 只渲染一段 LaTeX
+TinyMD.highlight(code, lang) // 只做代码高亮
 TinyMD.esc(s)                // 转义
 
 TinyMD.renderInto(el, text)  // 渲染进元素（自动加 .tm-body）
@@ -58,7 +59,18 @@ TinyMD.auto()                // 渲染页面上所有 <script type="text/tiny-md
 ## 支持什么
 
 **Markdown**：标题、列表、任务列表、表格、引用、分隔线、图片、链接、
-裸URL、粗体/斜体/删除线/高亮、行内代码、代码块（带语言标签和复制按钮）
+裸URL、粗体/斜体/删除线/高亮、行内代码、代码块（带语言标签、复制按钮和语法高亮）
+
+**代码高亮**：js/ts/json/python/bash/sql/go/rust/css/yaml/html/xml/c/cpp/java 等
+（通过别名覆盖几十种写法）。关键字、字符串、数字、注释、函数名、常量、运算符、
+HTML 标签名都能上色，且不引 highlight.js/prism。
+
+```js
+TinyMD.highlight('const x = 1;', 'js')
+// <span class="hl-kw">const</span> x <span class="hl-op">=</span> ...
+```
+
+注释和字符串优先级最高 —— 里面的关键字不会被误上色。
 
 **LaTeX**：希腊字母、上下标（可嵌套）、分数（可嵌套）、根号、运算符、
 箭头、`\text{}`、多行。不支持的命令**原样保留**，不会变成乱码。
