@@ -15,6 +15,8 @@ body{
   background:var(--bg);color:var(--ink);
   font:15px/1.78 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
   -webkit-font-smoothing:antialiased;padding:0 0 60px;
+  /* 代码块、表格各自横滚，页面本身不该能横滚 */
+  overflow-x:hidden;
 }
 a{color:var(--v2);text-decoration:none}
 a:hover{text-decoration:underline}
@@ -42,7 +44,7 @@ body::before{
   font-size:19px;padding-bottom:8px;border-bottom:1px solid var(--line);
 }
 .body h3{font-size:16px}
-.body p{margin:12px 0;color:#cfd5e4}
+.body p{margin:12px 0;color:#cfd5e4;overflow-wrap:break-word}
 .body ul,.body ol{margin:12px 0 12px 24px;color:#cfd5e4}
 .body li{margin:5px 0}
 .body code{
@@ -52,10 +54,17 @@ body::before{
 }
 .body pre{
   background:var(--panel);border:1px solid var(--line);border-radius:11px;
-  padding:15px 17px;overflow-x:auto;margin:15px 0;line-height:1.6;
+  padding:15px 17px;margin:15px 0;line-height:1.6;
+  /* 必须限宽再滚：只写 overflow-x:auto 的话，长代码行会把容器撑开，
+     整页跟着能横向滚 —— 实测 390px 视口下页面宽到了 476px。 */
+  max-width:100%;overflow-x:auto;
 }
-.body pre code{background:none;border:none;padding:0;color:#d7dceb;font-size:13px}
-.body table{border-collapse:collapse;width:100%;margin:16px 0;font-size:13.5px}
+.body pre code{
+  background:none;border:none;padding:0;color:#d7dceb;font-size:13px;
+  white-space:pre;
+}
+.body table{border-collapse:collapse;width:100%;margin:16px 0;font-size:13.5px;
+  display:block;max-width:100%;overflow-x:auto}
 .body th,.body td{border:1px solid var(--line);padding:9px 12px;text-align:left}
 .body th{background:var(--panel2);font-weight:650}
 .body blockquote{
